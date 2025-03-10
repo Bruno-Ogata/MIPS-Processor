@@ -7,11 +7,12 @@ module Mux_5bits_4entradas (input [4:0] entrada1, input [4:0] entrada2, input [4
 	begin
 		case (key)
 		
-			0: saida <= entrada1;
-			1: saida <= entrada2;
-			2: saida <= entrada3;
-			3: saida <= entrada4;
-		
+			0: saida = entrada1;
+			1: saida = entrada2;
+			2: saida = entrada3;
+			3: saida = entrada4;
+			default: saida = entrada1;		
+			
 		endcase
 	end
 

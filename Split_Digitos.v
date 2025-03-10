@@ -1,26 +1,48 @@
-module Split_Digitos(
-		input      [7:0] value,
-		output reg [3:0] tens,
-		output reg [3:0] ones
+/*module Split_Digitos(
+		input  [31:0] value,
+		output [3:0] dez_milhoes,
+		output [3:0] milhoes,
+		output [3:0] cent_mil,
+		output [3:0] dez_mil,
+		output [3:0] mil,
+		output [3:0] cent,
+		output [3:0] tens,
+		output [3:0] ones
 	);
 	
-	integer i;
-	always @( value ) begin
-		
-		tens = 0;
-		ones = 0;
-		for( i=7; i>=0; i=i-1 ) begin
-				
-			if( tens >= 5 )
-				tens = tens + 3;
-				
-			if( ones >= 5 )
-				ones = ones + 3;
-				
-			tens = tens << 1;
-			tens[0] = ones[3];
-			ones = ones << 1;
-			ones[0] = value[i];
-		end
-	end
+	 assign dez_milhoes = (value / 10000000) % 10;
+    assign milhoes = (value / 1000000) % 10;
+    assign cent_mil = (value / 100000) % 10;
+    assign dez_mil = (value / 10000) % 10;
+    assign mil = (value / 1000) % 10;
+    assign cent = (value / 100) % 10;
+    assign tens = (value / 10) % 10;
+    assign ones = value % 10;
+	
+endmodule*/
+
+module Split_Digitos(
+    input  [31:0] value,
+    input clk,
+    output reg [3:0] dez_milhoes,
+    output reg [3:0] milhoes,
+    output reg [3:0] cent_mil,
+    output reg [3:0] dez_mil,
+    output reg [3:0] mil,
+    output reg [3:0] cent,
+    output reg [3:0] tens,
+    output reg [3:0] ones
+);
+
+    always @(posedge clk) begin
+        dez_milhoes <= (value / 10000000) % 10;
+        milhoes <= (value / 1000000) % 10;
+        cent_mil <= (value / 100000) % 10;
+        dez_mil <= (value / 10000) % 10;
+        mil <= (value / 1000) % 10;
+        cent <= (value / 100) % 10;
+        tens <= (value / 10) % 10;
+        ones <= value % 10;
+    end
+
 endmodule

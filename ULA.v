@@ -25,36 +25,20 @@ always @(ALU_Ctrl, dados1, dados2)
 		 6'b000111: begin //slt
 					if (dados1 < dados2)
 					begin
-						resultado <= 1;
+						resultado = 1;
 					end
 					else
 					begin
-						resultado <= 0;
+						resultado = 0;
 					end
 				end
-		 6'b100000: resultado <= 0; //jal
-		 /*6'b100001: begin //beq 
-					if (dados1 == dados2)
-					begin
-						resultado <= 0;
-					end
-					else
-					begin
-						resultado <= 1;
-					end
-				end 
-		 6'b100011: begin //bne 
-					if (dados1 == dados2)
-					begin
-						resultado <= 1;
-					end
-					else
-					begin
-						resultado <= 0;
-					end
-				end */
+		 6'b100000: resultado = 0; //jal
+		 6'b100001: resultado = (dados1 == dados2) ? 0 : 1; // beq (não usa o valor de resultado para salto)
+		 6'b100011: resultado = (dados1 != dados2) ? 0 : 1; // bne (não usa o valor de resultado para salto)
+		 6'b100100: resultado = ((dados1 < dados2) || (dados1 == dados2)) ? 1 : 0; // sle (não usa o valor de resultado para salto)
+		 6'b100101: resultado = ((dados1 > dados2) || (dados1 == dados2)) ? 1 : 0; // sge (não usa o valor de resultado para salto)
 		
-		default: resultado <= 0;
+		default: resultado = 0;
 		
 		endcase
 	

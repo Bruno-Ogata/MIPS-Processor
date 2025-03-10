@@ -1,17 +1,16 @@
-module Salva_Saida (input [31:0] Rs, input print_out, output [31:0] print_dados);
+module Salva_Saida (
+    input [31:0] Rs,
+    input print_out,
+    input clk,  // Supondo que tenha um sinal de clock
+    output reg [31:0] print_dados
+);
 
-	reg [31:0] registrador_saida = 32'd0;
-
-
-	always @(*)
-	begin
-		if (print_out == 1) begin
-			registrador_saida = Rs;
-		end
-	end
-
-
-	assign print_dados = registrador_saida;	
-
+    always @(posedge clk) begin //testando 
+        if (print_out) begin
+				//print_dados <= {28'b0, Rs}; // Zero-extension: 28 zeros + 4 bits de Rs
+            print_dados <= Rs;
+        end
+        // Caso contrário, mantém o valor anterior
+    end
 
 endmodule 

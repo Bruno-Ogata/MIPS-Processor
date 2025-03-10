@@ -5,9 +5,9 @@ always @ (key or entrada1 or entrada2)
 
 begin
 	if (key)
-		saida <= entrada2;
+		saida = entrada2;
 	else
-		saida <= entrada1;
+		saida = entrada1;
 end
 
 endmodule

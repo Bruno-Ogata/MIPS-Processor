@@ -1,5 +1,4 @@
-
-module Mux_5bits (input [4:0] entrada1, input [4:0] entrada2, input key, output reg [4:0] saida);
+module Mux_6bits (input [5:0] entrada1, input [5:0] entrada2, input key, output reg [5:0] saida);
 
 always @(key or entrada1 or entrada2)
 
@@ -11,4 +10,3 @@ begin
 end
 
 endmodule
-

@@ -41,6 +41,14 @@ begin
 					ALU_Ctrl = 6'b000111;
 				end
 				
+				6'b100100: begin //sle
+					ALU_Ctrl = 6'b100100;
+				end
+				
+				6'b100101: begin //sge
+					ALU_Ctrl = 6'b100101;
+				end
+				
 				default: begin
 					ALU_Ctrl = 6'b000000;
 				end
